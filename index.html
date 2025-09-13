@@ -295,7 +295,15 @@
   }
 
   /* Dress code panel */
-  .dress-note { margin:4px 0 10px; color: var(--muted); line-height:1.55; }
+  .dress-note {
+  margin: 4px 0 10px;
+  color: var(--ink); /* Updated to match the text color in Event Info and RSVP */
+  line-height: 1.55; /* Consistent line height */
+  font-size: 1rem; /* Matches the font size in Event Info and RSVP */
+  font-family: var(--font-body); /* Ensures consistent font family */
+  font-weight: 400; /* Matches the weight used in other sections */
+  letter-spacing: 0.01em; /* Consistent letter spacing */
+}
   .swatches {
   display: flex; /* Use flexbox for alignment */
   justify-content: center; /* Center horizontally */
@@ -521,7 +529,6 @@
   padding: 18px 16px 20px;
   box-shadow: 0 0 24px rgba(40, 40, 40, 0.25);
   border: 1px solid rgba(255, 79, 163, 0.3); /* Pink border */
-  color: var(--ink);
 }
 
 </style>
