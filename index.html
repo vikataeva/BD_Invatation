@@ -499,6 +499,20 @@
   text-decoration: none;
 }
 
+/* Add spacing between Dress Code and RSVP sections */
+.event-grid section {
+  margin-bottom: 24px; /* Increase spacing between sections */
+}
+
+/* Add pink border to RSVP section */
+.body-ref.block.card-dark {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(20, 0, 20, 0.95));
+  border-radius: var(--radius-xl);
+  padding: 18px 16px 20px;
+  box-shadow: 0 0 24px rgba(40, 40, 40, 0.25);
+  border: 1px solid rgba(255, 79, 163, 0.3); /* Pink border */
+  color: var(--ink);
+}
 </style>
 </head>
 
@@ -587,7 +601,6 @@
               </div>
             </section>
           </div>
-        </div>
 
         <!-- RSVP -->
         <div class="body-ref block card-dark" aria-labelledby="rsvp-title">
@@ -604,6 +617,7 @@
         <footer><small>Designed with ♥ by Victoria Kataeva</small></footer>
       </div>
     </main>
+  </div>
   </div>
 
 <script>
