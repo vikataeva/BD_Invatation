@@ -513,6 +513,11 @@
   border: 1px solid rgba(255, 79, 163, 0.3); /* Pink border */
   color: var(--ink);
 }
+
+#event-info-title {
+  text-align: center; /* Center the text horizontally */
+  margin: 0 auto 12px; /* Center the element and add spacing below */
+}
 </style>
 </head>
 
@@ -626,24 +631,33 @@
     const card = document.querySelector('main.card');
     if (!card) return;
 
-    const month = card.dataset.month || '';
-    const day = card.dataset.day || '';
-    const weekday = card.dataset.weekday || '';
-    const date = card.dataset.date || '';
-    const time = card.dataset.time || '';
     const location = card.dataset.location || '';
-
     const $ = (id) => document.getElementById(id);
 
-    // Meta pills + Event Info text
     if ($('info-location')) $('info-location').textContent = location;
 
-    // Maps link
     const maps = document.getElementById('maps-link');
     if (maps && location) {
       maps.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
     }
   })();
+
+  // RSVP form handler
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector(".rsvp-form");
+    const input = document.getElementById("guest-name");
+    const button = form.querySelector(".btn-rsvp");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault(); // prevent page refresh
+
+      if (input.value.trim() !== "") {
+        button.textContent = `Thank you, ${input.value.trim()}! 🎉`;
+        button.disabled = true; // optional: prevent re-clicking
+        button.style.background = "var(--pink-soft)";
+      }
+    });
+  });
 </script>
 </body>
 </html>
