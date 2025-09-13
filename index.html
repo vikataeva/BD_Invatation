@@ -504,7 +504,17 @@
   margin-bottom: 24px; /* Increase spacing between sections */
 }
 
-/* Add pink border to RSVP section */
+/* Event Info section: Remove pink border */
+.body-ref.block.card-dark.event-info {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(20, 0, 20, 0.95));
+  border-radius: var(--radius-xl);
+  padding: 18px 16px 20px;
+  box-shadow: 0 0 24px rgba(40, 40, 40, 0.25);
+  border: none; /* Removed pink border */
+  color: var(--ink);
+}
+
+/* RSVP section: Add pink border */
 .body-ref.block.card-dark {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(20, 0, 20, 0.95));
   border-radius: var(--radius-xl);
@@ -514,10 +524,6 @@
   color: var(--ink);
 }
 
-#event-info-title {
-  text-align: center; /* Center the text horizontally */
-  margin: 0 auto 12px; /* Center the element and add spacing below */
-}
 </style>
 </head>
 
