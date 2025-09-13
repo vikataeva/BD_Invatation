@@ -286,13 +286,9 @@
     padding:12px 0;
     position:relative;
   }
-  .timeline li::after{
-    content:"";
-    position:absolute; left:-1px; top:calc(50% - 5px);
-    width:10px; height:10px; border-radius:50%;
-    background: var(--pink);
-    box-shadow: 0 0 14px rgba(255,79,163,.65);
-  }
+  .timeline li::after {
+  content: none; /* Remove the dots */
+}
   .timeline li + li { border-top:1px solid rgba(255,255,255,.06); }
   .timeline time {
     font-weight:900; color: var(--pink); letter-spacing:.02em;
@@ -528,7 +524,6 @@
           <div class="event-grid">
             <!-- Left: big visual -->
             <section class="panel" aria-labelledby="venue-title">
-              <h3 id="venue-title" class="panel-title">Event Visual</h3>
               <div class="panel-hero" aria-hidden="true">
                 <!-- Full-bleed image -->
                 <img src="calendar.png" alt="Calendar for the event" />
@@ -557,15 +552,15 @@
               <ul class="timeline" aria-label="Schedule">
                 <li>
                   <time datetime="2025-09-20">Sep 20</time>
-                  <span>Saturday · Ksusha's Birthday</span>
+                  <span> Ksusha's Birthday</span>
                 </li>
                 <li>
                   <time datetime="2025-09-20T19:00">19:00</time>
-                  <span>Welcome Martinis</span>
+                  <span>Welcome Drinks</span>
                 </li>
                 <li>
-                  <time>Location</time>
-                  <span>BLVD 1206</span>
+                  <time>BLVD 1206</time>
+                  <span>Starting location, then see where the night takes us</span>
                 </li>
               </ul>
             </section>
@@ -575,7 +570,7 @@
               <h3 id="dress-title" class="panel-title">Dress Code</h3>
               <p class="dress-note">
                 We’re going for <strong>Sexy &amp; the City chic</strong> — cocktail dresses, sharp suits,
-                and a hint of sparkle. Pinks and dark neutrals look perfect with the neon palette.
+                and a hint of sparkle. Pinks and dark neutrals to match the SEXy vibes.
               </p>
               <div class="swatches" role="list" aria-label="Palette">
                 <span class="swatch" style="background:#d4c5a0" title="Beige" role="listitem"></span>
@@ -583,9 +578,6 @@
                 <span class="swatch" style="background:#ff79b9" title="Neon Pink" role="listitem"></span>
                 <span class="swatch" style="background:#111"    title="Black"     role="listitem"></span>
               </div>
-              <div class="thumbs" aria-hidden="true">
-                <div class="thumb"></div>
-                <div class="thumb"></div>
               </div>
             </section>
           </div>
