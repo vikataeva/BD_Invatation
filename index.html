@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ksusha Birthday Party</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg-deep: #0a0010;
+    --bg-deeper: #07000b;
+    --pink: #ff4fa3;
+    --pink-soft:#ff79b9;
+    --ink: #f7e7f1;
+    --muted: #c9b6c2;
+
+    --card: rgba(10, 0, 16, 0.55);
+    --stroke: rgba(255, 79, 163, .35);
+    --shadow: 0 28px 70px rgba(255,79,163,.18);
+
+    --radius-lg: 18px;
+    --radius-xl: 22px;
+    --space-1: 8px;
+    --space-2: 12px;
+    --space-3: 16px;
+    --space-4: 20px;
+  }
+
+  /* Base */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    color: var(--ink);
+    background:
+      radial-gradient(60% 55% at 20% 0%, rgba(255,79,163,.20) 0%, transparent 60%),
+      radial-gradient(45% 60% at 80% 10%, rgba(255,79,163,.14) 0%, transparent 65%),
+      linear-gradient(180deg, var(--bg-deep), var(--bg-deeper));
+  }
+
+  /* Page width */
+  .page{
+    max-width: clamp(320px, 92vw, 420px);
+    margin: 0 auto;
+    padding: clamp(12px, 4vw, 20px);
+  }
+
+  /* Card shell (hero + body) */
+  .card{
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    padding: 0;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--stroke);
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  /* ================== HERO ================== */
+  .hero{
+    position: relative;
+    min-height: 50vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #08000e;
+  }
+  .hero-img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    z-index: 0;
+    /* Bottom fade to transparent => blends into body */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 78%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 78%, rgba(0,0,0,0) 100%);
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(7,0,11,.65) 95%, rgba(7,0,11,1) 100%);
+    pointer-events:none;
+    z-index: 1;
+  }
+  .hero-transition{
+    display:none; height:0; margin:0;
+    position: relative;
+    height: 28px;
+    background:
+      radial-gradient(120% 140% at 50% -10%, rgba(255,79,163,.28), transparent 60%),
+      linear-gradient(180deg, rgba(7,0,11,1), rgba(7,0,11,0));
+    margin-top: -18px;
+    z-index: 1;
+  }
+
+  /* Hero copy (full width, fancy option available) */
+  .hero-text{
+    position:absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 0 12px;
+    z-index: 2;
+    color: #fff;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(2rem, 1.1rem + 2vw, 2.2rem);
+    font-weight: 400;
+    line-height: 1.25;
+    text-align: center;
+    text-shadow: 0 3px 12px rgba(0,0,0,.6);
+  }
+
+  /* Eyebrow + chip + disco sit above */
+  .eyebrow, .chip, .disco { position: absolute; z-index: 3; }
+
+  .eyebrow{
+    top: 10px; left: 50%; transform: translateX(-50%);
+    padding:.5rem .75rem; font-size:.72rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+    color: var(--ink);
+    border:1.5px solid rgba(255,255,255,.9); border-radius:999px;
+    background: rgba(255,255,255,0.08);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    box-shadow: 0 4px 18px rgba(255,79,163,.35);
+    white-space: nowrap;
+  }
+
+  /* Calendar chip in header */
+  .chip{
+    top: 10px; right: 10px;
+    display: inline-flex; align-items: center; gap: .5rem; white-space: nowrap;
+    padding: .45rem .7rem; border-radius: 999px;
+    background: radial-gradient(100% 100% at 50% 0%, #ff8ac4, #ff4fa3);
+    color: #fff; font-size:.75rem; font-weight:800; letter-spacing:.02em; line-height:1;
+    box-shadow: 0 0 28px rgba(255,79,163,.45);
+  }
+  .chip--calendar .cal{
+    display:grid; grid-template-rows:auto 1fr;
+    width:32px; height:36px; border-radius:6px; overflow:hidden;
+    background:#fff; color:#0b0012; box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  }
+  .chip--calendar .cal-month{
+    display:flex; align-items:center; justify-content:center;
+    background: var(--pink); color:#fff; font-size:.58rem; font-weight:900; letter-spacing:.08em;
+    padding:.15rem 0 .12rem;
+  }
+  .chip--calendar .cal-day{
+    display:flex; align-items:center; justify-content:center; font-size:.95rem; font-weight:900;
+  }
+  .chip--calendar .chip-text{ display:grid; gap:.1rem }
+  .chip--calendar .chip-date{ font-size:.62rem; font-weight:700; letter-spacing:.08em; opacity:.95; text-transform:uppercase }
+  .chip--calendar time{ font-size:.85rem; font-variant-numeric: tabular-nums; letter-spacing:.02em }
+
+  /* Disco balls */
+  .disco{ width:140px; filter: drop-shadow(0 8px 16px rgba(0,0,0,.55)) saturate(1.05); user-select:none; pointer-events:none; }
+  .disco.one{ top: -8px; left: -24px; }
+  .disco.two{ top: 6px; left: 80px; width:110px; }
+
+  /* ================== BODY ================== */
+  .invite-body{
+    position: relative;
+    padding: 22px 16px 26px;
+    text-align:center;
+    background:
+      linear-gradient(180deg, rgba(7,0,11,0) 0%, rgba(7,0,11,.35) 20%, rgba(7,0,11,.65) 60%, rgba(7,0,11,.85) 100%);
+  }
+  .invite-body h1{
+    margin:0 0 6px;
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight:700;
+    font-size: clamp(1.7rem, 1.2rem + 2.2vw, 2.4rem);
+    color: var(--ink);
+    letter-spacing:.02em;
+    text-shadow: 0 0 18px rgba(255,79,163,.22);
+  }
+  .invite-body .lead{
+    margin:.3rem auto .9rem;
+    max-width: 54ch;
+    color: var(--muted);
+    line-height:1.55;
+    font-size: .95rem;
+  }
+
+  /* Section shell / headings */
+  .body-ref { background: transparent; color: var(--ink); padding: 18px 14px 28px; }
+  .block h2{
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    margin: 0 0 12px; font-size: 1.25rem; color: var(--pink);
+  }
+
+  /* Dark neon cards */
+  .card-dark{
+    background: linear-gradient(180deg, rgba(0,0,0,.8), rgba(20,0,20,.95));
+    border-radius: var(--radius-xl);
+    padding: 18px 16px 20px;
+    box-shadow: 0 0 24px rgba(40, 40, 40, 0.25);
+    border: 1px solid rgba(13, 12, 12, 0.35);
+    color: var(--ink);
+  }
+
+ /* ========== Event Info – Neon, image-free variant ========== */
+.event-info {
+  padding: 18px 16px 20px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+/* top accent line */
+.event-info::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 12px; right: 12px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--pink), transparent);
+  opacity: .75;
+}
+
+/* subtle background bloom */
+.event-info::after {
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 60%;
+  background: radial-gradient(60% 60% at 50% 0%, rgba(255,79,163,.18), transparent 70%);
+  filter: blur(24px);
+  pointer-events: none;
+}
+
+/* compact header row with tiny icons */
+.event-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 14px; padding: 10px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(0,0,0,.7), rgba(20,0,20,.9) transparent 100%);
+  box-shadow: 0 0 24px rgba(255,79,163,.18);
+}
+
+/* Info grid (no image): two columns on larger screens */
+.event-details { display: grid; gap: 14px; }
+.event-meta {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 12px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px){
+  .event-meta { grid-template-columns: 1fr 1fr; }
+}
+
+/* Each item becomes a mini card with neon icon badge */
+.event-item {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255,79,163,.25);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(0,0,0,.5), rgba(20,0,20,.7));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.02), 0 8px 18px rgba(255,79,163,.08);
+}
+
+/* icon badge */
+.event-item .badge-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  display: grid; place-items: center;
+  background: radial-gradient(120% 120% at 50% 0%, #ff8ac4, #ff4fa3);
+  box-shadow: 0 0 18px rgba(255,79,163,.45);
+  color: #0b0012;
+}
+.badge-icon svg { width: 22px; height: 22px; fill: #0b0012; }
+
+/* label + value */
+.meta-label {
+  font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+  opacity: .85; color: var(--ink); margin-bottom: 6px; display: block;
+}
+.meta-value {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .5rem .8rem; border-radius: 999px; line-height: 1;
+  color: #fff; font-weight: 800; letter-spacing: .02em; font-size: .95rem;
+  background: rgba(0,0,0,.45);
+  border: 1px solid rgba(255,79,163,.35);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+}
+.meta-value.glow {
+  background: radial-gradient(100% 100% at 50% 0%, #ff8ac4, #ff4fa3);
+  box-shadow: 0 0 22px rgba(255,79,163,.55);
+}
+
+/* dress code stack inline */
+.dress-stack { display: grid; gap: 8px; }
+.dress-note { font-size: .9rem; color: var(--muted); }
+
+/* action row */
+.event-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+
+/* tiny breathing divider */
+.event-divider {
+  height: 1px; margin: 6px 0 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,79,163,.35), transparent);
+  border: none;
+}
+
+/* gentle pulse on icon badges (respects reduced motion) */
+@keyframes neonPulse {
+  0%, 100% { box-shadow: 0 0 18px rgba(255,79,163,.45); transform: translateZ(0); }
+  50%      { box-shadow: 0 0 26px rgba(255,79,163,.65); }
+}
+.badge-icon { animation: neonPulse 3.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce){
+  .badge-icon { animation: none; }
+}
+
+  /* Chips */
+  .chip-inline{
+    display:inline-flex; align-items:center; gap:.5rem; white-space:nowrap;
+    padding:.55rem .8rem; border-radius:999px; line-height:1; color:#fff;
+    font-weight:800; letter-spacing:.02em; font-size:.9rem;
+  }
+  .chip-inline svg{ width:18px; height:18px; fill: currentColor; opacity:.9; }
+  .chip-glow{ background: radial-gradient(100% 100% at 50% 0%, #ff8ac4, #ff4fa3); box-shadow: 0 0 22px rgba(255,79,163,.55); }
+  .chip-outline{ background: rgba(0,0,0,.5); border:1px solid rgba(255,79,163,.35); box-shadow: inset 0 0 0 1px rgba(255,255,255,.05); }
+
+  .event-actions{ display:flex; flex-wrap:wrap; gap:10px; }
+  .btn-ghost, .btn-solid{
+    display:inline-block; text-decoration:none; font-weight:800; letter-spacing:.02em;
+    border-radius:12px; padding:.7rem 1rem; transition: all .2s ease;
+  }
+  .btn-ghost{ color: var(--pink); border:1px solid rgba(255,79,163,.45); background: rgba(0,0,0,.45); }
+  .btn-ghost:hover{ box-shadow: 0 0 24px rgba(255,79,163,.45); transform: translateY(-1px); }
+  .btn-solid{ color:#0b0012; background: var(--pink); box-shadow: 0 0 24px rgba(255,79,163,.55), inset 0 -2px 0 rgba(0,0,0,.2); }
+  .btn-solid:hover{ transform: translateY(-1px); box-shadow: 0 0 36px rgba(255,79,163,.7), inset 0 -2px 0 rgba(0,0,0,.25); }
+
+  .event-note{ margin: 2px 0 0; color: var(--muted); line-height:1.55; }
+
+/* Dress code inside Event Info */
+.event-meta .meta-dress {
+  align-items: start;    /* label aligns to top */
+}
+
+.dress-stack {
+  display: grid;
+  gap: 8px;
+}
+
+.swatches.compact .swatch {
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 0 8px rgba(255,79,163,.3);
+}
+
+@media (min-width: 720px){
+  .swatches.compact .swatch { width: 22px; height: 22px; }
+}
+
+  /* Swatches */
+  .swatches{ display:flex; gap:10px; margin:12px 0 2px; }
+  .swatch{
+    width:26px; height:26px; border-radius:50%;
+    border: 1px solid rgba(255,255,255,.2); box-shadow: 0 0 10px rgba(255,79,163,.35);
+  }
+
+  /* RSVP */
+  .rsvp-form{
+    display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:14px;
+  }
+  .rsvp-form input{
+    width:100%; max-width:320px; padding:12px 14px; border-radius:999px;
+    border:1px solid rgba(255,79,163,.35); background: rgba(0,0,0,.5);
+    color: var(--ink); font-size:1rem; outline:none; transition: border .2s ease, box-shadow .2s ease;
+  }
+  .rsvp-form input::placeholder{ color: rgba(255,255,255,.55); font-style:italic; }
+  .rsvp-form input:focus{ border-color: var(--pink); box-shadow: 0 0 14px rgba(255,79,163,.5); }
+  .btn-rsvp{
+    display:inline-block; padding:.85rem 1.8rem; border-radius:999px; border:none; text-decoration:none;
+    font-weight:800; letter-spacing:.05em; background: var(--pink); color:#fff; cursor:pointer;
+    box-shadow: 0 0 32px rgba(255,79,163,.45), inset 0 -2px 0 rgba(0,0,0,.2);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-rsvp:hover{ transform: translateY(-2px); box-shadow: 0 0 44px rgba(255,79,163,.65), inset 0 -2px 0 rgba(0,0,0,.25); }
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; white-space:nowrap; clip-path: inset(50%);
+  }
+
+  .goodbye {
+  margin: 24px 0 16px;
+  text-align: center;              /* ensures text is centered */
+  color: var(--pink);
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: 1.15rem;
+}
+  /* Footer */
+  footer{ text-align:center; padding: 14px 10px 22px; color:var(--muted); }
+  footer small{ font-size:.8rem }
+
+  /* Tablet / small desktop upsizing */
+  @media (min-width: 521px){
+    .page{ max-width: 720px; }
+    .disco{ width:180px; }
+    .disco.two{ width:130px; left: 110px; }
+    .chip{ top: 14px; right: 14px; }
+  }
+
+  @media (min-width: 900px){
+    .page{ max-width: 900px; }
+    .disco{ width:220px; }
+    .disco.two{ width:160px; left: 140px; }
+  }
+
+  /* Motion respect */
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ===========================
+   SEX AND THE CITY TYPOGRAPHY
+   =========================== */
+
+/* Font variables (you already load these) */
+:root{
+  --font-head: "Playfair Display", Georgia, serif;
+  --font-body: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+  --font-script: "Great Vibes", "Playfair Display", serif;
+}
+
+/* Base copy */
+body, p, .note, .event-note, .meta-value, .chip, .btn, .btn-ghost, .btn-solid, .btn-rsvp {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: .01em;
+  line-height: 1.55;
+}
+
+/* STRIKING HEADLINES (SATC vibe) */
+h1, h2, h3,
+.block h2,
+.event-head h2,
+#rsvp-title,
+#event-info-title {
+  font-family: var(--font-head);
+  font-weight: 800;                 /* bold & striking */
+  letter-spacing: .06em;            /* fashion-forward tracking */
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin: 0 0 .5rem;
+  color: var(--ink);
+  /* subtle neon-pink sheen */
+  background:var(--pink-soft);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 22px rgba(255,79,163,.25);
+}
+
+/* Main page title a touch larger */
+.invite-body h1 {
+  font-size: clamp(2rem, 1.2rem + 3.2vw, 2.8rem);
+}
+
+/* Section titles uniform size (Event Info, RSVP, etc.) */
+.block h2,
+.event-head h2,
+#rsvp-title,
+#event-info-title {
+  font-size: clamp(1.2rem, 1rem + 1.2vw, 1.6rem);
+}
+
+/* Hero tagline — elegant script accent for a feminine touch */
+.hero-text{
+  font-family: var(--font-script);
+  font-weight: 500;
+  letter-spacing: .02em;
+  font-size: clamp(1.6rem, 1rem + 3vw, 2.4rem);
+  text-transform: none;
+  background: none;
+  -webkit-text-fill-color: #fff;
+  text-shadow: 0 2px 18px rgba(255,79,163,.35);
+}
+
+/* Eyebrow tag stays punchy but consistent */
+.eyebrow{
+  font-family: var(--font-body);
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+/* Chips + meta values feel luxe */
+.meta-label{
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .9;
+}
+
+.meta-value,
+.chip-inline,
+.chip,
+.btn,
+.btn-ghost,
+.btn-solid,
+.btn-rsvp{
+  font-family: var(--font-body);
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+
+/* Event pills slightly larger for emphasis */
+.meta-value{
+  font-size: 1rem;
+}
+
+/* Dress note/body copy color cohesion */
+.note, .event-note{
+  color: var(--muted);
+}
+
+/* Footer + goodbye consistent + centered */
+.goodbye{
+  font-family: var(--font-head);
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 24px 0 16px;
+  background:var(--pink-soft);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 18px rgba(255,79,163,.25);
+}
+footer small{
+  font-family: var(--body-font);
+  letter-spacing: .02em;
+  opacity: .85;
+}
+
+/* Ensure RSVP + Event Info headings match */
+#rsvp-title, #event-info-title { text-shadow: 0 0 22px rgba(255,79,163,.25); }
+
+/* Optional: make buttons’ labels slightly tighter for fashion feel */
+.btn, .btn-ghost, .btn-solid, .btn-rsvp { text-transform: uppercase; letter-spacing: .08em; }
+
+</style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- Source of truth for event details -->
+    <main class="card"
+      data-month="SEP"
+      data-day="20"
+      data-weekday="Saturday"
+      data-date="Sat, Sep 20"
+      data-time="19:00 – Late"
+      data-location="BLVD 1206"
+      role="main">
+
+      <!-- ================== HERO ================== -->
+      <header class="hero" aria-label="Event header">
+        <img class="hero-img" src="head.png" alt="Party header" />
+
+        <p class="eyebrow">You're invited!</p>
+
+        <!-- disco balls -->
+        <img class="disco one" src="discoball.png" alt="" aria-hidden="true" />
+        <img class="disco two" src="discoball.png" alt="" aria-hidden="true" />
+
+        <!-- calendar chip (kept in header) -->
+        <div class="chip chip--calendar" aria-label="Event date and time">
+          <span class="cal" aria-hidden="true">
+            <span class="cal-month" id="cal-month"></span>
+            <span class="cal-day" id="cal-day"></span>
+          </span>
+          <span class="chip-text">
+            <span class="chip-date" id="chip-weekday"></span>
+            <time id="chip-time"></time>
+          </span>
+        </div>
+
+        <!-- bottom-centered hero copy -->
+        <p class="hero-text">
+          Let's celebrate Ksusha's 26th birthday! 
+        </p>
+      </header>
+      <!-- ================== BODY ================== -->
+
+     <!-- EVENT INFO (image-free, modern) -->
+<div class="body-ref block card-dark event-info" aria-labelledby="event-info-title">
+  <div class="event-head">
+    <h2 id="event-info-title">Event Info</h2>
+    <div class="event-head-icons" aria-hidden="true">
+    </div>
+  </div>
+
+  <div class="event-details">
+    <ul class="event-meta" aria-label="Event details">
+      <!-- Date -->
+      <li class="event-item">
+        <span class="badge-icon" aria-hidden="true">
+          <!-- calendar icon -->
+       <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+  <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 
+           2v14c0 1.1.9 2 2 2h14c1.1 0 
+           2-.9 2-2V6c0-1.1-.9-2-2-2zm0 
+           16H5V9h14v11z"/>
+</svg>
+
+        </span>
+        <div>
+          <span class="meta-label">Date</span>
+          <span class="meta-value">
+            <span id="info-date"></span>
+          </span>
+        </div>
+      </li>
+
+      <!-- Time -->
+      <li class="event-item">
+        <span class="badge-icon" aria-hidden="true">
+          <!-- clock icon -->
+          <svg viewBox="0 0 24 24"><path d="M12 6v6l4 2M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/></svg>
+        </span>
+        <div>
+          <span class="meta-label">Time</span>
+          <span class="meta-value glow">
+            <span id="info-time"></span>
+          </span>
+        </div>
+      </li>
+
+      <!-- Location -->
+      <li class="event-item">
+        <span class="badge-icon" aria-hidden="true">
+          <!-- pin icon -->
+          <svg viewBox="0 0 24 24"><path d="M12 22s7-6.5 7-11a7 7 0 1 0-14 0c0 4.5 7 11 7 11Zm0-9a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"/></svg>
+        </span>
+        <div>
+          <span class="meta-label">Location</span>
+          <span class="meta-value" id="info-location-wrap">
+            <span id="info-location"></span>
+          </span>
+          <div class="event-actions" style="margin-top:8px;">
+            <a class="btn-ghost" id="maps-link" target="_blank" rel="noopener">Open Maps</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Dress Code -->
+      <li class="event-item">
+        <span class="badge-icon" aria-hidden="true">
+          <!-- sparkle/star icon -->
+          <svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.8L19 9.5l-4.5 2.1L12 17l-2.5-5.4L5 9.5l5.2-1.7L12 3z"/></svg>
+        </span>
+        <div>
+          <span class="meta-label">Dress Code</span>
+          <div class="dress-stack">
+            <span class="meta-value">Sexy &amp; the City chic</span>
+            <hr class="event-divider" />
+            <!-- optional quick hints -->
+            <span class="dress-note">Think cocktail dresses, sharp suits &amp; a touch of sparkle ✨</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        <!-- END EVENT INFO -->
+
+        <!-- RSVP FORM -->
+        <div class="body-ref block card-dark" aria-labelledby="rsvp-title" ">
+          <h2 id="rsvp-title">Are You Coming?</h2>
+          <p>Please RSVP by September 10th to let us know if you'll be joining the celebration.</p>
+
+          <form class="rsvp-form" action="#" method="post">
+            <label for="guest-name" class="sr-only">Your Name</label>
+            <input type="text" id="guest-name" name="guest-name" placeholder="Your Name" required />
+            <button type="submit" class="btn-rsvp">Yes, I’m In!</button>
+          </form>
+        </div>
+
+        <!-- SEE YA -->
+        <p class="goodbye">See you soon!</p>
+
+    <footer>
+      <small>Designed with ♥ by Victoria Kataeva</small>
+    </footer>
+  </div>
+
+<script>
+  // Sync header chip + Event Info from data-* on <main>
+  (function () {
+    const card = document.querySelector('main.card');
+    if (!card) return;
+
+    const month = card.dataset.month || '';
+    const day = card.dataset.day || '';
+    const weekday = card.dataset.weekday || '';
+    const date = card.dataset.date || '';
+    const time = card.dataset.time || '';
+    const location = card.dataset.location || '';
+
+    const $ = (id) => document.getElementById(id);
+
+    // Header chip
+    if ($('cal-month')) $('cal-month').textContent = month;
+    if ($('cal-day')) $('cal-day').textContent = day;
+    if ($('chip-weekday')) $('chip-weekday').textContent = weekday;
+    if ($('chip-time')) $('chip-time').textContent = time;
+
+    // Event Info
+    if ($('info-date')) $('info-date').textContent = date;
+    if ($('info-time')) $('info-time').textContent = time;
+    if ($('info-location')) $('info-location').textContent = location;
+
+    // Maps link
+    const maps = document.getElementById('maps-link');
+    if (maps && location) {
+      maps.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
+    }
+  })();
+</script>
+</body>
+</html>
