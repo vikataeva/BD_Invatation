@@ -1,0 +1,15 @@
+.panel-hero {
+  border-radius: 14px;
+  overflow: hidden;
+  height: 160px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 12px;
+}
+
+.calendar-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}

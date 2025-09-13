@@ -33,16 +33,16 @@
   *{box-sizing:border-box}
   html,body{height:100%}
   body {
-  margin: 0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  color: var(--ink);
-  background: 
-    radial-gradient(circle at 50% 20%, rgba(17, 17, 17, 0.3), rgba(10, 0, 16, 0.8) 60%, rgba(7, 0, 11, 1) 100%),
-    linear-gradient(90deg, rgba(10, 0, 16, 0.6), rgb(0, 0, 0)),
-    linear-gradient(180deg, rgb(0, 0, 0), rgba(0, 0, 0, 0.6), rgb(0, 0, 0)); /* Flipped horizontally */
-  background-blend-mode: overlay; /* Smoothly blend the gradients */
-  height: 100%;
-}
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 50% 20%, rgba(17, 17, 17, 0.3), rgba(10, 0, 16, 0.8) 60%, rgba(7, 0, 11, 1) 100%),
+      linear-gradient(90deg, rgba(10, 0, 16, 0.6), rgb(0, 0, 0)),
+      linear-gradient(180deg, rgb(0, 0, 0), rgba(0, 0, 0, 0.6), rgb(0, 0, 0));
+    background-blend-mode: overlay;
+    height: 100%;
+  }
 
   /* Page width */
   .page{
@@ -80,7 +80,6 @@
     object-fit: contain;
     display: block;
     z-index: 0;
-    /* Bottom fade to transparent => blends into body */
     -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 78%, rgba(0,0,0,0) 100%);
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 78%, rgba(0,0,0,0) 100%);
     -webkit-mask-repeat: no-repeat;
@@ -93,18 +92,7 @@
     pointer-events:none;
     z-index: 1;
   }
-  .hero-transition{
-    display:none; height:0; margin:0;
-    position: relative;
-    height: 28px;
-    background:
-      radial-gradient(120% 140% at 50% -10%, rgba(255,79,163,.28), transparent 60%),
-      linear-gradient(180deg, rgba(7,0,11,1), rgba(7,0,11,0));
-    margin-top: -18px;
-    z-index: 1;
-  }
 
-  /* Hero copy (full width, fancy option available) */
   .hero-text{
     position:absolute;
     bottom: 14px;
@@ -139,31 +127,28 @@
   /* Calendar chip in header */
   .chip{
     position: absolute;
-    display: inline-flex; /* Ensure the chip's content is inline and horizontally aligned */
-    align-items: center; /* Vertically center the content */
-    justify-content: center; /* Horizontally center the content */
-    gap: 0.4rem; /* Space between elements inside the chip */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
     white-space: nowrap;
-    padding: 0.5rem 0.9rem; /* Adjust padding for a horizontal rectangle shape */
-    height: auto; /* Ensure the height is determined by content */
-    min-height: 56px; /* Set a minimum height for the chip */
-    max-height: 500px; /* Prevent the chip from stretching vertically */
-    width: auto; /* Allow the width to adjust based on content */
-    background: none; /* No background */
-    color: #fff; /* Keep the text color white */
-    font-size: 0.9rem; /* Adjust font size for better readability */
+    padding: 0.5rem 0.9rem;
+    min-height: 56px;
+    width: auto;
+    background: none;
+    color: #fff;
+    font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 0.02em;
     line-height: 1;
-    box-shadow: none; /* Remove the box shadow */
-    z-index: 10; /* Ensure it stays above other elements */
-    overflow: hidden; /* Prevent content from overflowing */
+    box-shadow: none;
+    z-index: 10;
+    overflow: hidden;
   }
   .chip--calendar .cal{
     display:grid; grid-template-rows:auto 1fr;
-    width:60px; /* Set a fixed width for the calendar icon */
-    height:60px; /* Set a fixed height for the calendar icon */
-    border-radius:6px; /* Slightly rounded corners for the calendar icon */
+    width:60px; height:60px;
+    border-radius:6px;
     overflow:hidden;
     background:#fff; color:#0b0012; box-shadow: 0 2px 6px rgba(0,0,0,.2);
   }
@@ -179,11 +164,6 @@
   .chip--calendar .chip-date{ font-size:.8rem; font-weight:700; letter-spacing:.08em; opacity:.9; text-transform:uppercase }
   .chip--calendar time{ font-size:.75rem; font-variant-numeric: tabular-nums; letter-spacing:.02em }
 
-  /* Disco balls */
-  .disco{ width:140px; filter: drop-shadow(0 8px 16px rgba(0,0,0,.55)) saturate(1.05); user-select:none; pointer-events:none; }
-  .disco.one{ top: -8px; left: -24px; }
-  .disco.two{ top: 6px; left: 80px; width:110px; }
-
   /* ================== BODY ================== */
   .invite-body{
     position: relative;
@@ -196,7 +176,7 @@
     margin:0 0 6px;
     font-family: "Playfair Display", Georgia, serif;
     font-weight: 800;
-    font-size: clamp(2rem, 1.5rem + 3vw, 3.2rem); /* Increased font size */
+    font-size: clamp(2rem, 1.5rem + 3vw, 3.2rem);
     color: var(--ink);
     letter-spacing: 0.02em;
     text-shadow: 0 0 18px rgba(255, 79, 163, 0.22);
@@ -205,8 +185,8 @@
     margin:0.3rem auto 0.9rem;
     max-width: 54ch;
     color: var(--muted);
-    line-height: 1.75; /* Slightly increased line height for readability */
-    font-size: 1.2rem; /* Increased font size */
+    line-height: 1.75;
+    font-size: 1.2rem;
   }
 
   /* Section shell / headings */
@@ -227,155 +207,157 @@
     color: var(--ink);
   }
 
- /* ========== Event Info – Neon, image-free variant ========== */
-.event-info {
-  padding: 18px 16px 20px;
-  text-align: left;
-  position: relative;
-  overflow: hidden;
-}
-
-/* top accent line */
-.event-info::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 12px; right: 12px; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--pink), transparent);
-  opacity: .75;
-}
-
-/* subtle background bloom */
-.event-info::after {
-  content: "";
-  position: absolute;
-  inset: -20% -10% auto -10%;
-  height: 60%;
-  background: radial-gradient(60% 60% at 50% 0%, rgba(255,79,163,.18), transparent 70%);
-  filter: blur(24px);
-  pointer-events: none;
-}
-
-/* compact header row with tiny icons */
-.event-head {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 12px; margin-bottom: 14px; padding: 10px 12px;
-  border: 1px solid rgba(0, 0, 0, 0.35);
-  border-radius: 14px;
-  background: linear-gradient(180deg, rgba(0,0,0,.7), rgba(20,0,20,.9) transparent 100%);
-  box-shadow: 0 0 24px rgba(255,79,163,.18);
-}
-
-/* Info grid (no image): two columns on larger screens */
-.event-details { display: grid; gap: 14px; }
-.event-meta {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; gap: 12px;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 640px){
-  .event-meta { grid-template-columns: 1fr 1fr; }
-}
-
-/* Each item becomes a mini card with neon icon badge */
-.event-item {
-  display: grid;
-  grid-template-columns: 46px 1fr;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  border: 1px solid rgba(255,79,163,.25);
-  border-radius: 14px;
-  background: linear-gradient(180deg, rgba(0,0,0,.5), rgba(20,0,20,.7));
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.02), 0 8px 18px rgba(255,79,163,.08);
-}
-
-/* icon badge */
-.event-item .badge-icon {
-  width: 46px; height: 46px; border-radius: 12px;
-  display: grid; place-items: center;
-  background: radial-gradient(120% 120% at 50% 0%, #ff8ac4, #ff4fa3);
-  box-shadow: 0 0 18px rgba(255,79,163,.45);
-  color: #0b0012;
-}
-.badge-icon svg { width: 28px; height: 28px; fill: #0b0012; }
-
-/* label + value */
-.meta-label {
-  font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
-  opacity: .85; color: var(--ink); margin-bottom: 6px; display: block;
-}
-.meta-value {
-  display: inline-flex; align-items: center; gap: .5rem;
-  padding: .5rem .8rem; border-radius: 999px; line-height: 1;
-  color: #fff; font-weight: 800; letter-spacing: .02em; font-size: .95rem;
-  background: rgba(0,0,0,.45);
-  border: 1px solid rgba(255,79,163,.35);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
-}
-.meta-value.glow {
-  background: radial-gradient(100% 100% at 50% 0%, #ff8ac4, #ff4fa3);
-  box-shadow: 0 0 22px rgba(255,79,163,.55);
-}
-
-/* dress code stack inline */
-.dress-stack { display: grid; gap: 8px; }
-.dress-note { font-size: .9rem; color: var(--muted); }
-
-/* action row */
-.event-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
-
-/* tiny breathing divider */
-.event-divider {
-  height: 1px; margin: 6px 0 2px;
-  background: linear-gradient(90deg, transparent, rgba(255,79,163,.35), transparent);
-  border: none;
-}
-
-/* gentle pulse on icon badges (respects reduced motion) */
-@keyframes neonPulse {
-  0%, 100% { box-shadow: 0 0 18px rgba(255,79,163,.45); transform: translateZ(0); }
-  50%      { box-shadow: 0 0 26px rgba(255,79,163,.65); }
-}
-.badge-icon { animation: neonPulse 3.2s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce){
-  .badge-icon { animation: none; }
-}
-
-  /* Chips */
-  .chip-inline{
-    display:inline-flex; align-items:center; gap:.5rem; white-space:nowrap;
-    padding:.55rem .8rem; border-radius:999px; line-height:1; color:#fff;
-    font-weight:800; letter-spacing:.02em; font-size:.9rem;
+  /* ===== Event Info layout ===== */
+  .info-stack { display:grid; gap:16px; position:relative; }
+  .event-grid { display:grid; gap:16px; }
+  @media (min-width: 640px){
+    .event-grid { grid-template-columns: 1.2fr 1fr; align-items:start; }
   }
-  .chip-inline svg{ width:18px; height:18px; fill: currentColor; opacity:.9; }
-  .chip-glow{ background: radial-gradient(100% 100% at 50% 0%, #ff8ac4, #ff4fa3); box-shadow: 0 0 22px rgba(255,79,163,.55); }
-  .chip-outline{ background: rgba(0,0,0,.5); border:1px solid rgba(255,79,163,.35); box-shadow: inset 0 0 0 1px rgba(255,255,255,.05); }
 
-  .event-actions{ display:flex; flex-wrap:wrap; gap:10px; }
-  .btn-ghost, .btn-solid{
-    display:inline-block; text-decoration:none; font-weight:800; letter-spacing:.02em;
-    border-radius:12px; padding:.7rem 1rem; transition: all .2s ease;
+  /* Generic panel */
+  .panel {
+    background: linear-gradient(180deg, rgba(0,0,0,.78), rgba(20,0,20,.95));
+    border:1px solid rgba(255,79,163,.30);
+    border-radius:22px;
+    padding:16px;
+    box-shadow: 0 12px 28px rgba(255,79,163,.12);
+    color: var(--ink);
   }
-  .btn-ghost{ color: var(--pink); border:1px solid rgba(255,79,163,.45); background: rgba(0,0,0,.45); }
-  .btn-ghost:hover{ box-shadow: 0 0 24px rgba(255,79,163,.45); transform: translateY(-1px); }
-  .btn-solid{ color:#0b0012; background: var(--pink); box-shadow: 0 0 24px rgba(255,79,163,.55), inset 0 -2px 0 rgba(0,0,0,.2); }
-  .btn-solid:hover{ transform: translateY(-1px); box-shadow: 0 0 36px rgba(255,79,163,.7), inset 0 -2px 0 rgba(0,0,0,.25); }
 
-  .event-note{ margin: 2px 0 0; color: var(--muted); line-height:1.55; }
+  /* Panel header */
+  .panel-title {
+    margin:0 0 12px;
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing:.06em;
+    font-size:1.2rem;
+    color: var(--pink);
+  }
 
-/* Dress code inside Event Info */
-.event-meta .meta-dress {
-  align-items: start;    /* label aligns to top */
-}
+  /* Visual card with full-bleed image */
+  .panel-hero {
+    border-radius: 14px;
+    overflow: hidden;
+    background: radial-gradient(120% 120% at 50% -20%, rgba(255,79,163,.18), rgba(0,0,0,.6));
+    border: 1px solid rgba(255,79,163,.25);
+    height: 220px;               /* a bit taller for impact */
+    display: grid; place-items: center;
+  }
+  .panel-hero img{
+    width:100%;
+    height:100%;
+    object-fit:cover;            /* ensures full-size cover */
+    display:block;
+  }
 
-.dress-stack {
-  display: grid;
-  gap: 8px;
-}
+  /* Meta pills row (date / time / location) */
+  .meta-row{
+    display:flex; flex-wrap:wrap; gap:10px; margin:12px 0 6px;
+  }
+  .pill{
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding: .5rem .8rem;
+    background: rgba(255,79,163,.10);
+    border:1px solid rgba(255,79,163,.28);
+    border-radius:999px;
+    font-weight:800;
+    letter-spacing:.04em;
+    box-shadow: 0 0 18px rgba(255,79,163,.12);
+    backdrop-filter: blur(4px);
+  }
+  .pill svg{ width:16px; height:16px; }
 
-@media (min-width: 720px){
-  .swatches.compact .swatch { width: 22px; height: 22px; }
-}
+  /* Vertical timeline */
+  .timeline {
+    list-style:none; margin:10px 0 0; padding:0 0 0 14px;
+    position:relative;
+    color:aliceblue
+  }
+  .timeline::before{
+    content:"";
+    position:absolute; left:6px; top:0; bottom:0;
+    width:2px; background: linear-gradient(180deg, rgba(255,79,163,.8), rgba(255,79,163,.12));
+    border-radius:2px;
+  }
+  .timeline li {
+    display:grid; grid-template-columns: 76px 1fr;
+    align-items:center; gap:12px;
+    padding:12px 0;
+    position:relative;
+  }
+  .timeline li::after{
+    content:"";
+    position:absolute; left:-1px; top:calc(50% - 5px);
+    width:10px; height:10px; border-radius:50%;
+    background: var(--pink);
+    box-shadow: 0 0 14px rgba(255,79,163,.65);
+  }
+  .timeline li + li { border-top:1px solid rgba(255,255,255,.06); }
+  .timeline time {
+    font-weight:900; color: var(--pink); letter-spacing:.02em;
+  }
+
+  /* Dress code panel */
+  .dress-note { margin:4px 0 10px; color: var(--muted); line-height:1.55; }
+  .swatches { display:flex; gap:10px; margin:8px 0 12px; }
+  .swatch {
+    width:26px; height:26px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.2);
+    box-shadow:0 0 10px rgba(255,79,163,.35);
+  }
+  .thumbs { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .thumb {
+    height:100px; border-radius:12px; overflow:hidden;
+    background: radial-gradient(120% 120% at 50% -20%, rgba(255,79,163,.14), rgba(0,0,0,.7));
+    border:1px solid rgba(255,79,163,.22);
+  }
+
+  /* Contacts panel */
+  .contact-note { color: var(--muted); line-height:1.5; margin:4px 0 10px; }
+  .phone { display:block; font-weight:800; margin:6px 0 12px; }
+  .call-big {
+    margin: 4px auto 0;
+    width: 120px; height: 120px; border-radius:50%;
+    display:grid; place-items:center;
+    background: #fff;
+    color:#0b0012;
+    text-decoration:none; font-weight:800;
+    box-shadow: 0 0 24px rgba(255,79,163,.55), inset 0 -3px 0 rgba(0,0,0,.12);
+    border:1px solid rgba(255,79,163,.35);
+  }
+  .call-big:hover { box-shadow: 0 0 36px rgba(255,79,163,.7), inset 0 -3px 0 rgba(0,0,0,.16); }
+  .closer {
+    text-align:center; margin: 10px 0 0;
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight:800; text-transform:uppercase; letter-spacing:.06em;
+    color: var(--pink);
+  }
+
+  /* Buttons */
+  .btn-ghost{
+    display:inline-block; padding:.85rem 1.8rem; border-radius:999px; border:2px solid rgba(255,79,163,.55); text-decoration:none;
+    font-weight:800; letter-spacing:.05em; background: transparent; color: var(--pink);
+    box-shadow: 0 0 24px rgba(255,79,163,.25);
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+  }
+  .btn-ghost:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 0 36px rgba(255,79,163,.45);
+    background: rgba(255,79,163,.05);
+    color: var(--ink);
+    border-color: rgba(255,79,163,.75);
+  }
+  .btn-solid{
+    display:inline-block; padding:.85rem 1.8rem; border-radius:999px; border:none; text-decoration:none;
+    font-weight:800; letter-spacing:.05em; background: var(--pink); color:#fff;
+    box-shadow: 0 0 32px rgba(255,79,163,.45), inset 0 -2px 0 rgba(0,0,0,.2);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-solid:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 0 44px rgba(255,79,163,.65), inset 0 -2px 0 rgba(0,0,0,.25);
+  }
 
   /* RSVP */
   .rsvp-form{
@@ -400,15 +382,16 @@
   }
 
   .goodbye {
-  margin: 24px 0 16px;
-  text-align: center;              /* ensures text is centered */
-  color: var(--pink);
-  font-family: "Playfair Display", Georgia, serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  font-size: 1.15rem;
-}
+    margin: 24px 0 16px;
+    text-align: center;
+    color: var(--pink);
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    font-size: 1.15rem;
+  }
+
   /* Footer */
   footer{ text-align:center; padding: 14px 10px 22px; color:var(--muted); }
   footer small{ font-size:.8rem }
@@ -420,7 +403,6 @@
     .disco.two{ width:130px; left: 110px; }
     .chip{ top: 14px; right: 14px; }
   }
-
   @media (min-width: 900px){
     .page{ max-width: 900px; }
     .disco{ width:220px; }
@@ -433,134 +415,87 @@
   }
 
   /* ===========================
-   SEX AND THE CITY TYPOGRAPHY
-   =========================== */
+     SEX AND THE CITY TYPOGRAPHY
+     =========================== */
+  :root{
+    --font-head: "Playfair Display", Georgia, serif;
+    --font-body: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+    --font-script: "Great Vibes", "Playfair Display", serif;
+  }
+  body, p, .note, .event-note, .meta-value, .chip, .btn, .btn-ghost, .btn-solid, .btn-rsvp {
+    font-family: var(--font-body);
+    font-weight: 400;
+    letter-spacing: .01em;
+    line-height: 1.55;
+  }
+  h1, h2, h3,
+  .block h2,
+  .event-head h2,
+  #rsvp-title,
+  #event-info-title {
+    font-family: var(--font-head);
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin: 0 0 .5rem;
+    color: var(--ink);
+    background:var(--pink-soft);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 22px rgba(255,79,163,.25);
+  }
+  .invite-body h1 { font-size: clamp(2rem, 1.2rem + 3.2vw, 2.8rem); }
+  .block h2,
+  .event-head h2,
+  #rsvp-title,
+  #event-info-title { font-size: clamp(1.2rem, 1rem + 1.2vw, 1.6rem); }
+  .hero-text{
+    font-family: var(--font-script);
+    font-weight: 500;
+    letter-spacing: .02em;
+    font-size: clamp(1.6rem, 1rem + 3vw, 2.4rem);
+    text-transform: none;
+    background: none;
+    -webkit-text-fill-color: #fff;
+    text-shadow: 0 2px 18px rgba(255,79,163,.35);
+  }
+  .eyebrow{ font-family: var(--font-body); font-weight: 800; letter-spacing: .14em; }
+  .meta-label{ font-family: var(--font-body); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .9; }
+  .meta-value, .chip-inline, .chip, .btn, .btn-ghost, .btn-solid, .btn-rsvp{ font-family: var(--font-body); font-weight: 800; letter-spacing: .02em; }
+  .meta-value{ font-size: 1rem; }
+  .note, .event-note{ color: var(--muted); }
+  .goodbye{
+    font-family: var(--font-head);
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 24px 0 16px;
+    background:var(--pink-soft);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 18px rgba(255,79,163,.25);
+  }
+  footer small{ letter-spacing: .02em; opacity: .85; }
+  #rsvp-title, #event-info-title { text-shadow: 0 0 22px rgba(255,79,163,.25); }
+  .btn, .btn-ghost, .btn-solid, .btn-rsvp { text-transform: uppercase; letter-spacing: .08em; }
 
-/* Font variables (you already load these) */
-:root{
-  --font-head: "Playfair Display", Georgia, serif;
-  --font-body: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
-  --font-script: "Great Vibes", "Playfair Display", serif;
+  /* Make the location hyperlink white (and keep it white on hover/visited) */
+#maps-link {
+  color: #fff;
+  text-decoration: none;
 }
-
-/* Base copy */
-body, p, .note, .event-note, .meta-value, .chip, .btn, .btn-ghost, .btn-solid, .btn-rsvp {
-  font-family: var(--font-body);
-  font-weight: 400;
-  letter-spacing: .01em;
-  line-height: 1.55;
+#maps-link:visited,
+#maps-link:hover,
+#maps-link:active,
+#maps-link:focus {
+  color: #fff;
+  text-decoration: none;
 }
-
-/* STRIKING HEADLINES (SATC vibe) */
-h1, h2, h3,
-.block h2,
-.event-head h2,
-#rsvp-title,
-#event-info-title {
-  font-family: var(--font-head);
-  font-weight: 800;                 /* bold & striking */
-  letter-spacing: .06em;            /* fashion-forward tracking */
-  text-transform: uppercase;
-  line-height: 1.1;
-  margin: 0 0 .5rem;
-  color: var(--ink);
-  /* subtle neon-pink sheen */
-  background:var(--pink-soft);
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 22px rgba(255,79,163,.25);
-}
-
-/* Main page title a touch larger */
-.invite-body h1 {
-  font-size: clamp(2rem, 1.2rem + 3.2vw, 2.8rem);
-}
-
-/* Section titles uniform size (Event Info, RSVP, etc.) */
-.block h2,
-.event-head h2,
-#rsvp-title,
-#event-info-title {
-  font-size: clamp(1.2rem, 1rem + 1.2vw, 1.6rem);
-}
-
-/* Hero tagline — elegant script accent for a feminine touch */
-.hero-text{
-  font-family: var(--font-script);
-  font-weight: 500;
-  letter-spacing: .02em;
-  font-size: clamp(1.6rem, 1rem + 3vw, 2.4rem);
-  text-transform: none;
-  background: none;
-  -webkit-text-fill-color: #fff;
-  text-shadow: 0 2px 18px rgba(255,79,163,.35);
-}
-
-/* Eyebrow tag stays punchy but consistent */
-.eyebrow{
-  font-family: var(--font-body);
-  font-weight: 800;
-  letter-spacing: .14em;
-}
-
-/* Chips + meta values feel luxe */
-.meta-label{
-  font-family: var(--font-body);
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  opacity: .9;
-}
-
-.meta-value,
-.chip-inline,
-.chip,
-.btn,
-.btn-ghost,
-.btn-solid,
-.btn-rsvp{
-  font-family: var(--font-body);
-  font-weight: 800;
-  letter-spacing: .02em;
-}
-
-/* Event pills slightly larger for emphasis */
-.meta-value{
-  font-size: 1rem;
-}
-
-/* Dress note/body copy color cohesion */
-.note, .event-note{
-  color: var(--muted);
-}
-
-/* Footer + goodbye consistent + centered */
-.goodbye{
-  font-family: var(--font-head);
-  font-weight: 800;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 1.2rem;
-  margin: 24px 0 16px;
-  background:var(--pink-soft);
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 18px rgba(255,79,163,.25);
-}
-footer small{
-  font-family: var(--body-font);
-  letter-spacing: .02em;
-  opacity: .85;
-}
-
-/* Ensure RSVP + Event Info headings match */
-#rsvp-title, #event-info-title { text-shadow: 0 0 22px rgba(255,79,163,.25); }
-
-/* Optional: make buttons’ labels slightly tighter for fashion feel */
-.btn, .btn-ghost, .btn-solid, .btn-rsvp { text-transform: uppercase; letter-spacing: .08em; }
 
 </style>
 </head>
@@ -580,120 +515,86 @@ footer small{
       <!-- ================== HERO ================== -->
       <header class="hero" aria-label="Event header">
         <img class="hero-img" src="head.png" alt="Party header" />
-
         <p class="eyebrow">You're invited!</p>
-
-        <!-- disco balls -->
-        <img class="disco one" src="discoball .png" alt="" aria-hidden="true" />
-        <img class="disco two" src="discoball .png" alt="" aria-hidden="true" />
-
-        <!-- bottom-centered hero copy -->
-        <p class="hero-text">
-          Let's celebrate Ksusha's 26th birthday! 
-        </p>
-
-        <!-- calendar chip (moved inside hero) -->
-        <div class="chip chip--calendar" aria-label="Event date and time">
-          <span class="cal" aria-hidden="true">
-            <span class="cal-month" id="cal-month"></span>
-            <span class="cal-day" id="cal-day"></span>
-          </span>
-          <span class="chip-text">
-            <span class="chip-date" id="chip-weekday"></span>
-            <time id="chip-time"></time>
-          </span>
-        </div>
+        <p class="hero-text">Let's celebrate Ksusha's 26th birthday!</p>
       </header>
+
       <!-- ================== BODY ================== -->
+      <div class="body-ref block card-dark event-info" aria-labelledby="event-info-title">
+        <div class="info-stack">
+          <h2 id="event-info-title">Event Info</h2>
 
-     <!-- EVENT INFO (image-free, modern) -->
-<div class="body-ref block card-dark event-info" aria-labelledby="event-info-title">
-  <div class="event-head">
-    <h2 id="event-info-title">Event Info</h2>
-    <div class="event-head-icons" aria-hidden="true">
-    </div>
-  </div>
+          <!-- Modern two-column layout -->
+          <div class="event-grid">
+            <!-- Left: big visual -->
+            <section class="panel" aria-labelledby="venue-title">
+              <h3 id="venue-title" class="panel-title">Event Visual</h3>
+              <div class="panel-hero" aria-hidden="true">
+                <!-- Full-bleed image -->
+                <img src="calendar.png" alt="Calendar for the event" />
+              </div>
 
-  <div class="event-details">
-    <ul class="event-meta" aria-label="Event details">
-      <!-- Date -->
-      <li class="event-item">
-        <span class="badge-icon" aria-hidden="true">
-          <!-- calendar icon -->
-       <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-  <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 
-           2v14c0 1.1.9 2 2 2h14c1.1 0 
-           2-.9 2-2V6c0-1.1-.9-2-2-2zm0 
-           16H5V9h14v11z"/>
-</svg>
+              <!-- Meta pills: date / time / location -->
+              <div class="meta-row" role="list">
+                <span class="pill" role="listitem" title="Date">
+                  <!-- calendar icon -->
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V2Zm14 8H3v10a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V10ZM4 9h16V6a1 1 0 0 0-1-1h-3v2h-2V5H9v2H7V5H4a1 1 0 0 0-1 1v3Z"/></svg>
+                  Sep 20 · Saturday
+                </span>
+                <span class="pill" role="listitem" title="Time">
+                  <!-- clock icon -->
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1a11 11 0 1 1 0 22a11 11 0 0 1 0-22Zm1 6h-2v6h6v-2h-4V7Z"/></svg>
+                  19:00 – Late
+                </span>
+                <a id="maps-link" class="pill" role="listitem" title="Location" href="#" target="_blank" rel="noopener">
+                  <!-- pin icon -->
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7Zm0 9.5a2.5 2.5 0 1 0 0-5a2.5 2.5 0 0 0 0 5Z"/></svg>
+                  <span id="info-location">BLVD 1206</span>
+                </a>
+              </div>
 
-        </span>
-        <div>
-          <span class="meta-label">Date</span>
-          <span class="meta-value">
-            <span id="info-date"></span>
-          </span>
-        </div>
-      </li>
+              <!-- Vertical timeline -->
+              <ul class="timeline" aria-label="Schedule">
+                <li>
+                  <time datetime="2025-09-20">Sep 20</time>
+                  <span>Saturday · Ksusha's Birthday</span>
+                </li>
+                <li>
+                  <time datetime="2025-09-20T19:00">19:00</time>
+                  <span>Welcome Martinis</span>
+                </li>
+                <li>
+                  <time>Location</time>
+                  <span>BLVD 1206</span>
+                </li>
+              </ul>
+            </section>
 
-      <!-- Time -->
-      <li class="event-item">
-        <span class="badge-icon" aria-hidden="true">
-          <!-- clock icon -->
-          <svg viewBox="0 0 24 24"><path d="M12 6v6l4 2M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/></svg>
-        </span>
-        <div>
-          <span class="meta-label">Time</span>
-          <span class="meta-value">
-            <span id="info-time"></span>
-          </span>
-        </div>
-      </li>
-
-      <!-- Location -->
-      <li class="event-item">
-        <span class="badge-icon" aria-hidden="true">
-          <!-- pin icon -->
-          <svg viewBox="0 0 24 24"><path d="M12 22s7-6.5 7-11a7 7 0 1 0-14 0c0 4.5 7 11 7 11Zm0-9a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"/></svg>
-        </span>
-        <div>
-          <span class="meta-label">Location</span>
-          <span class="meta-value" id="info-location-wrap">
-            <span id="info-location"></span>
-          </span>
-          <div class="event-actions" style="margin-top:8px;">
-            <a class="btn-ghost" id="maps-link" target="_blank" rel="noopener">Open Maps</a>
+            <!-- Right: dress code, etc. -->
+            <section class="panel" aria-labelledby="dress-title">
+              <h3 id="dress-title" class="panel-title">Dress Code</h3>
+              <p class="dress-note">
+                We’re going for <strong>Sexy &amp; the City chic</strong> — cocktail dresses, sharp suits,
+                and a hint of sparkle. Pinks and dark neutrals look perfect with the neon palette.
+              </p>
+              <div class="swatches" role="list" aria-label="Palette">
+                <span class="swatch" style="background:#d4c5a0" title="Beige" role="listitem"></span>
+                <span class="swatch" style="background:#ff4fa3" title="Hot Pink" role="listitem"></span>
+                <span class="swatch" style="background:#ff79b9" title="Neon Pink" role="listitem"></span>
+                <span class="swatch" style="background:#111"    title="Black"     role="listitem"></span>
+              </div>
+              <div class="thumbs" aria-hidden="true">
+                <div class="thumb"></div>
+                <div class="thumb"></div>
+              </div>
+            </section>
           </div>
         </div>
-      </li>
 
-      <!-- Dress Code -->
-      <li class="event-item">
-        <span class="badge-icon" aria-hidden="true">
-          <!-- sparkle/star icon -->
-          <svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.8L19 9.5l-4.5 2.1L12 17l-2.5-5.4L5 9.5l5.2-1.7L12 3z"/></svg>
-        </span>
-        <div>
-          <span class="meta-label">Dress Code</span>
-          <div class="dress-stack">
-            <span class="meta-value">Sexy &amp; the City chic</span>
-            <hr class="event-divider" />
-            <!-- optional quick hints -->
-            <span class="dress-note">Think cocktail dresses, sharp suits &amp; a touch of sparkle ✨</span>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
-
-        <!-- END EVENT INFO -->
-
-        <!-- RSVP FORM -->
-        <div class="body-ref block card-dark" aria-labelledby="rsvp-title" ">
+        <!-- RSVP -->
+        <div class="body-ref block card-dark" aria-labelledby="rsvp-title">
           <h2 id="rsvp-title">Are You Coming?</h2>
           <p>Please RSVP to let us know if you'll be joining the celebration.</p>
-
           <form class="rsvp-form" action="#" method="post">
             <label for="guest-name" class="sr-only">Your Name</label>
             <input type="text" id="guest-name" name="guest-name" placeholder="Your Name" required />
@@ -701,12 +602,10 @@ footer small{
           </form>
         </div>
 
-        <!-- SEE YA -->
         <p class="goodbye">See you soon!</p>
-
-    <footer>
-      <small>Designed with ♥ by Victoria Kataeva</small>
-    </footer>
+        <footer><small>Designed with ♥ by Victoria Kataeva</small></footer>
+      </div>
+    </main>
   </div>
 
 <script>
@@ -724,15 +623,7 @@ footer small{
 
     const $ = (id) => document.getElementById(id);
 
-    // Header chip
-    if ($('cal-month')) $('cal-month').textContent = month;
-    if ($('cal-day')) $('cal-day').textContent = day;
-    if ($('chip-weekday')) $('chip-weekday').textContent = weekday;
-    if ($('chip-time')) $('chip-time').textContent = time;
-
-    // Event Info
-    if ($('info-date')) $('info-date').textContent = date;
-    if ($('info-time')) $('info-time').textContent = time;
+    // Meta pills + Event Info text
     if ($('info-location')) $('info-location').textContent = location;
 
     // Maps link
